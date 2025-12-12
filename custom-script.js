@@ -1,3 +1,3 @@
 window.addEventListener("load", function() {
-  alert("working");
+  alert("working properly! Easy Hacks");
 });
