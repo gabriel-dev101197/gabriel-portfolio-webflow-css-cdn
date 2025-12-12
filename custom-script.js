@@ -1,3 +1,7 @@
+
 window.addEventListener("load", function() {
-  alert("working properly! Easy Hacks");
+  const heading = document.querySelector("h1");
+  if (heading) {
+    heading.textContent = "Gabriel Portfolio";
+  }
 });
