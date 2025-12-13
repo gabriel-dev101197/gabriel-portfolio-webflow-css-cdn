@@ -1,0 +1,127 @@
+<!-- Osmo Resource Browser Reset -->
+<link rel="stylesheet" href="https://slater.app/16596/46199.css">
+
+
+<!----------------------- Osmo Resource ------------------------>
+<style>
+
+/* Disable Scroll on Loading */
+
+main:has(.crisp-header.is--loading) {
+  height: 100dvh;
+}
+
+/* Loading: Hidden */
+
+.crisp-header.is--loading.is--hidden {
+  display: none;
+}
+
+/* Loading: is Loading */
+
+.crisp-header.is--loading .crisp-header__slider {
+  display: none;
+}
+
+.crisp-header.is--loading .crisp-loader {
+  display: flex;
+}
+
+/* Loading: Loading Done */
+
+.crisp-loader {
+  display: none;
+}
+
+/* Webflow Editor */
+
+:is(.wf-design-mode, .wf-editor) .crisp-header.is--loading.is--hidden,
+:is(.wf-design-mode, .wf-editor) .crisp-header.is--loading.is--hidden .crisp-header__slider{
+	display: flex;
+}
+
+:is(.wf-design-mode, .wf-editor) .crisp-header.is--loading.is--hidden .crisp-loader {
+	display: none;
+}
+
+/* SplitText */
+.gsap_split_word-mask {
+	margin: -0.1em -0.05em;
+	padding: 0.1em 0.05em;
+}
+
+/* CSS Animations */
+
+.crisp-header__slider-nav-btn {
+  transition: border-color 0.75s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.crisp-header__slider-nav-btn img {
+  transform: scale(1) rotate(0.001deg);
+  transition: transform 0.75s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.crisp-header__slider-nav:has(.crisp-header__slider-nav-btn:hover) img {
+  transform: scale(0.825) rotate(0.001deg);
+}
+
+.crisp-header__slider-nav:has(.crisp-header__slider-nav-btn:hover) .crisp-header__slider-nav-btn:hover img {
+  transform: scale(1) rotate(0.001deg);
+}
+
+/* ------------------------- Underline Link by Osmo [https://osmo.supply/] -------------------------  */
+
+[data-underline-link] {
+  text-decoration: none;
+  position: relative;
+}
+
+[data-underline-link]::before,
+[data-underline-link="alt"]::before,
+[data-underline-link="alt"]::after{
+  content: "";
+  position: absolute;
+  bottom: -0.0625em;
+  left: 0;
+  width: 100%;
+  height: 0.0625em;
+  background-color: currentColor;
+  opacity: 0.5;
+  transition: transform 0.735s cubic-bezier(0.625, 0.05, 0, 1);
+  transform-origin: right;
+  transform: scaleX(0) rotate(0.001deg);
+}
+
+[data-underline-link="alt"]::before {
+  transform-origin: left;
+  transform: scaleX(1) rotate(0.001deg);
+  transition-delay: 0.3s;
+}
+
+[data-underline-link="alt"]::after {
+  transform-origin: right;
+  transform: scaleX(0) rotate(0.001deg);
+  transition-delay: 0s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-hover]:hover [data-underline-link]::before,
+  [data-underline-link]:hover::before {
+    transform-origin: left;
+    transform: scaleX(1) rotate(0.001deg);
+  }  
+  
+  [data-hover]:hover [data-underline-link="alt"]::before,
+  [data-underline-link="alt"]:hover::before {
+    transform-origin: right;
+    transform: scaleX(0) rotate(0.001deg);
+    transition-delay: 0s;
+  }
+  
+  [data-hover]:hover [data-underline-link="alt"]::after,
+  [data-underline-link="alt"]:hover::after {
+    transform-origin: left;
+    transform: scaleX(1) rotate(0.001deg);
+    transition-delay: 0.3s;
+  }
+}
