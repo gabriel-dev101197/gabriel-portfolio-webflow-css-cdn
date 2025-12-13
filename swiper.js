@@ -55,7 +55,9 @@
       {
         spaceBetween: 10,
         slidesPerView: "auto",
-        watchSlidesProgress: true
+        freeMode: true,
+        watchSlidesProgress: true,
+        watchSlidesVisibility: true
       }
     );
 

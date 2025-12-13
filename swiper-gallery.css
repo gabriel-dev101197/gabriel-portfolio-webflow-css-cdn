@@ -28,8 +28,15 @@
   opacity: 0.45;
   cursor: pointer;
   transition: opacity 0.2s ease;
+  width: 80px;
 }
 
 .gallery-thumbs .swiper-slide-thumb-active {
   opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .gallery-thumbs .swiper-slide {
+    width: 120px;
+  }
 }
