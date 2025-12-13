@@ -1,4 +1,3 @@
-
 (function () {
   const SWIPER_URL = "https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js";
 
@@ -13,21 +12,22 @@
     });
   }
 
-  function parseImages(el) {
-    try {
-      const data = el.dataset.images;
-      const images = JSON.parse(data);
-      return Array.isArray(images) ? images : [];
-    } catch {
-      return [];
-    }
+  function collectImages(gallery) {
+    const container = gallery.querySelector(".js-gallery-images");
+    if (!container) return [];
+
+    return Array.from(container.querySelectorAll("img"))
+      .map((img) => img.currentSrc || img.src)
+      .filter(Boolean);
   }
 
   function buildHTML(images) {
     const slides = images
       .map(
         (src) =>
-          `<div class="swiper-slide"><img src="${src}" loading="lazy"></div>`
+          `<div class="swiper-slide">
+             <img src="${src}" loading="lazy">
+           </div>`
       )
       .join("");
 
@@ -44,26 +44,32 @@
     `;
   }
 
-  function initGallery(el) {
-    const images = parseImages(el);
+  function initGallery(gallery) {
+    const images = collectImages(gallery);
     if (!images.length) return;
 
-    el.innerHTML = buildHTML(images);
+    gallery.insertAdjacentHTML("beforeend", buildHTML(images));
 
-    const thumbs = new Swiper(el.querySelector(".gallery-thumbs"), {
-      spaceBetween: 10,
-      slidesPerView: "auto",
-      watchSlidesProgress: true
-    });
+    const thumbs = new Swiper(
+      gallery.querySelector(".gallery-thumbs"),
+      {
+        spaceBetween: 10,
+        slidesPerView: "auto",
+        watchSlidesProgress: true
+      }
+    );
 
-    new Swiper(el.querySelector(".gallery-top"), {
-      spaceBetween: 10,
-      navigation: {
-        nextEl: el.querySelector(".swiper-button-next"),
-        prevEl: el.querySelector(".swiper-button-prev")
-      },
-      thumbs: { swiper: thumbs }
-    });
+    new Swiper(
+      gallery.querySelector(".gallery-top"),
+      {
+        spaceBetween: 10,
+        navigation: {
+          nextEl: gallery.querySelector(".swiper-button-next"),
+          prevEl: gallery.querySelector(".swiper-button-prev")
+        },
+        thumbs: { swiper: thumbs }
+      }
+    );
   }
 
   function initAll() {
@@ -79,3 +85,4 @@
 
   ready(() => loadSwiper().then(initAll));
 })();
+
