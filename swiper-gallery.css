@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.js-gallery-images {
+  display: none;
+}
+
 .gallery-top {
   height: 420px;
   margin-bottom: 16px;
