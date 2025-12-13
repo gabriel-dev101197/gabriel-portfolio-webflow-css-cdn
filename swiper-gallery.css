@@ -35,6 +35,10 @@
   opacity: 1;
 }
 
+.swiper-thumbs .swiper-wrapper {
+    place-content: center;
+}
+
 @media (min-width: 768px) {
   .gallery-thumbs .swiper-slide {
     width: 120px;
